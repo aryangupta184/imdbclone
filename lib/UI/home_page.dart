@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:round2/API/callbyname.dart';
 import 'package:round2/API/callbyid.dart';
+import 'package:url_launcher/url_launcher.dart' as URLLaucher;
 
 class HomePage extends StatefulWidget {
 
@@ -91,7 +92,7 @@ class _HomePage extends State<HomePage> {
 
 
     if (!mounted) return;
-    Navigator.of(context).pop();
+
   }
 
   Future<void> getDesiredMovie(id) async {
@@ -99,6 +100,17 @@ class _HomePage extends State<HomePage> {
     setState(() {
 
     });
+    print(DesiredMovieData![0]);
+    print(DesiredMovieData![1]);
+    print(DesiredMovieData![2]);
+    print(DesiredMovieData![3]);
+    print(DesiredMovieData![4]);
+    print(DesiredMovieData![5]);
+    print(DesiredMovieData![6]);
+
+
+
+    openDialog();
   }
 
 
@@ -188,7 +200,39 @@ class _HomePage extends State<HomePage> {
   void openDialog() {
     showDialog(context: context, builder: (context) {
       return AlertDialog(
-        title: Text(DesiredMovieData![0]['title']),
+        title: Column(
+          children: [
+            const SizedBox(height: 20,),
+            Text(DesiredMovieData![0]),
+            const SizedBox(height: 20,),
+            Text(DesiredMovieData![1]),
+            const SizedBox(height: 20,),
+            Text(DesiredMovieData![2]),
+            const SizedBox(height: 20,),
+            Text(DesiredMovieData![3]),
+            const SizedBox(height: 20,),
+            Text(DesiredMovieData![4]),
+            const SizedBox(height: 20,),
+            Text(DesiredMovieData![5]),
+            const SizedBox(height: 20,),
+            GestureDetector(
+              onTap: () {
+                String? url= "http://www.youtube.com/watch?v=\$\{"+DesiredMovieData![6]+"\}";
+                URL.launchURL(url);
+              },
+              child: const Text(
+                "Watch Trailer",
+                style: TextStyle(
+                  color: Colors.blue,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+
+
+          ],
+
+        )
 
 
       );
@@ -196,5 +240,16 @@ class _HomePage extends State<HomePage> {
   }
 
 }
+
+  abstract class URL {
+  static launchURL(String url) async {
+  url = Uri.encodeFull(url);
+  if (await URLLaucher.canLaunch(url)) {
+  await URLLaucher.launch(url);
+  } else {
+  throw 'Unknown error, can\'t launch the URL. Холбоост нэвтрэхэд алдаа гарлаа';
+  }
+  }
+  }
 
 
