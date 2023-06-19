@@ -11,7 +11,7 @@ class MovieIDAPI{
   static Future<List> call(String id) async {
     final dio = Dio();
     final response;
-    dio.options.headers["X-RapidAPI-Key"]="960651ec82msh57707d71adb67dep1d586fjsn25e70cabc634";
+    dio.options.headers["X-RapidAPI-Key"]="bb72b850f0msh562c04851d0f1a1p1a0ebcjsn813c727955e4";
     dio.options.headers["X-RapidAPI-Host"]="movies-tv-shows-database.p.rapidapi.com";
     dio.options.headers["Type"]="get-movie-details";
 
@@ -24,7 +24,7 @@ class MovieIDAPI{
     );
 
     // final response2;
-    // dio.options.headers["X-RapidAPI-Key"]="960651ec82msh57707d71adb67dep1d586fjsn25e70cabc634";
+    // dio.options.headers["X-RapidAPI-Key"]="bb72b850f0msh562c04851d0f1a1p1a0ebcjsn813c727955e4";
     // dio.options.headers["X-RapidAPI-Host"]="movies-tv-shows-database.p.rapidapi.com";
     // dio.options.headers["Type"]="get-movies-images-by-imdb";
     //
