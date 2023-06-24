@@ -17,11 +17,11 @@ class MovieIDAPI{
 
 
 
-
     response = await dio.get(
       'https://movies-tv-shows-database.p.rapidapi.com/',
       queryParameters: {'movieid':id},
     );
+    print(response.data);
 
     // final response2;
     // dio.options.headers["X-RapidAPI-Key"]="bb72b850f0msh562c04851d0f1a1p1a0ebcjsn813c727955e4";
